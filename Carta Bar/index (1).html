@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tessera Bar - Caffè Centrale</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <!-- Header della tessera -->
+            <div class="card-header">
+                <h1>☕ Caffè Centrale</h1>
+                <p class="subtitle">Tessera Fedeltà</p>
+            </div>
+
+            <!-- Informazioni utente -->
+            <div class="user-info">
+                <div class="avatar">
+                    <span id="userInitials">GR</span>
+                </div>
+                <div class="user-details">
+                    <h2 id="userName">Mario Rossi</h2>
+                    <p class="member-since">Membro dal <span id="memberDate">01/01/2024</span></p>
+                </div>
+            </div>
+
+            <!-- Selettore categoria -->
+            <div class="category-selector">
+                <button class="category-btn active" data-category="coffee">
+                    ☕ Caffè
+                </button>
+                <button class="category-btn" data-category="breakfast">
+                    🥐 Colazioni
+                </button>
+                <button class="category-btn" data-category="aperitivo">
+                    🍹 Aperitivi
+                </button>
+                <button class="category-btn" data-category="snack">
+                    🍪 Merendine
+                </button>
+            </div>
+
+            <!-- Sezione Caffè -->
+            <div class="category-section" id="coffee-section">
+                <div class="points-section">
+                    <div class="points-display">
+                        <p class="points-label">Caffè Accumulati</p>
+                        <h3 class="points-value" id="coffeePoints">0/10</h3>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="coffeeProgress"></div>
+                    </div>
+                    <p class="next-reward">
+                        <span id="coffeeToReward">10</span> caffè al prossimo omaggio
+                    </p>
+                </div>
+
+                <div class="item-grid">
+                    <div class="grid-item coffee-item" data-category="coffee" data-index="0"></div>
+                    <div class="grid-item coffee-item" data-category="coffee" data-index="1"></div>
+                    <div class="grid-item coffee-item" data-category="coffee" data-index="2"></div>
+                    <div class="grid-item coffee-item" data-category="coffee" data-index="3"></div>
+                    <div class="grid-item coffee-item" data-category="coffee" data-index="4"></div>
+                    <div class="grid-item coffee-item" data-category="coffee" data-index="5"></div>
+                    <div class="grid-item coffee-item" data-category="coffee" data-index="6"></div>
+                    <div class="grid-item coffee-item" data-category="coffee" data-index="7"></div>
+                    <div class="grid-item coffee-item" data-category="coffee" data-index="8"></div>
+                    <div class="grid-item coffee-item" data-category="coffee" data-index="9"></div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-primary" data-action="add" data-category="coffee">
+                        Aggiungi Caffè ☕
+                    </button>
+                    <button class="btn btn-secondary" data-action="redeem" data-category="coffee" disabled>
+                        Riscatta Omaggio 🎁
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sezione Colazioni -->
+            <div class="category-section" id="breakfast-section" style="display: none;">
+                <div class="points-section breakfast-theme">
+                    <div class="points-display">
+                        <p class="points-label">Colazioni Accumulate</p>
+                        <h3 class="points-value" id="breakfastPoints">0/8</h3>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="breakfastProgress"></div>
+                    </div>
+                    <p class="next-reward">
+                        <span id="breakfastToReward">8</span> colazioni al prossimo omaggio
+                    </p>
+                </div>
+
+                <div class="item-grid breakfast-grid">
+                    <div class="grid-item breakfast-item" data-category="breakfast" data-index="0"></div>
+                    <div class="grid-item breakfast-item" data-category="breakfast" data-index="1"></div>
+                    <div class="grid-item breakfast-item" data-category="breakfast" data-index="2"></div>
+                    <div class="grid-item breakfast-item" data-category="breakfast" data-index="3"></div>
+                    <div class="grid-item breakfast-item" data-category="breakfast" data-index="4"></div>
+                    <div class="grid-item breakfast-item" data-category="breakfast" data-index="5"></div>
+                    <div class="grid-item breakfast-item" data-category="breakfast" data-index="6"></div>
+                    <div class="grid-item breakfast-item" data-category="breakfast" data-index="7"></div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-primary" data-action="add" data-category="breakfast">
+                        Aggiungi Colazione 🥐
+                    </button>
+                    <button class="btn btn-secondary" data-action="redeem" data-category="breakfast" disabled>
+                        Riscatta Omaggio 🎁
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sezione Aperitivi -->
+            <div class="category-section" id="aperitivo-section" style="display: none;">
+                <div class="points-section aperitivo-theme">
+                    <div class="points-display">
+                        <p class="points-label">Aperitivi Accumulati</p>
+                        <h3 class="points-value" id="aperitivoPoints">0/6</h3>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="aperitivoProgress"></div>
+                    </div>
+                    <p class="next-reward">
+                        <span id="aperitivoToReward">6</span> aperitivi al prossimo omaggio
+                    </p>
+                </div>
+
+                <div class="item-grid aperitivo-grid">
+                    <div class="grid-item aperitivo-item" data-category="aperitivo" data-index="0"></div>
+                    <div class="grid-item aperitivo-item" data-category="aperitivo" data-index="1"></div>
+                    <div class="grid-item aperitivo-item" data-category="aperitivo" data-index="2"></div>
+                    <div class="grid-item aperitivo-item" data-category="aperitivo" data-index="3"></div>
+                    <div class="grid-item aperitivo-item" data-category="aperitivo" data-index="4"></div>
+                    <div class="grid-item aperitivo-item" data-category="aperitivo" data-index="5"></div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-primary" data-action="add" data-category="aperitivo">
+                        Aggiungi Aperitivo 🍹
+                    </button>
+                    <button class="btn btn-secondary" data-action="redeem" data-category="aperitivo" disabled>
+                        Riscatta Omaggio 🎁
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sezione Merendine -->
+            <div class="category-section" id="snack-section" style="display: none;">
+                <div class="points-section snack-theme">
+                    <div class="points-display">
+                        <p class="points-label">Merendine Accumulate</p>
+                        <h3 class="points-value" id="snackPoints">0/5</h3>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="snackProgress"></div>
+                    </div>
+                    <p class="next-reward">
+                        <span id="snackToReward">5</span> merendine al prossimo omaggio
+                    </p>
+                </div>
+
+                <div class="item-grid snack-grid">
+                    <div class="grid-item snack-item" data-category="snack" data-index="0"></div>
+                    <div class="grid-item snack-item" data-category="snack" data-index="1"></div>
+                    <div class="grid-item snack-item" data-category="snack" data-index="2"></div>
+                    <div class="grid-item snack-item" data-category="snack" data-index="3"></div>
+                    <div class="grid-item snack-item" data-category="snack" data-index="4"></div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-primary" data-action="add" data-category="snack">
+                        Aggiungi Merendina 🍪
+                    </button>
+                    <button class="btn btn-secondary" data-action="redeem" data-category="snack" disabled>
+                        Riscatta Omaggio 🎁
+                    </button>
+                </div>
+            </div>
+
+            <!-- QR Code -->
+            <div class="qr-section">
+                <div class="qr-code" id="qrcode"></div>
+                <p class="qr-label">Mostra al barista per timbrare</p>
+                <button class="btn-refresh-qr" id="refreshQR" title="Rigenera QR Code">
+                    🔄 Rigenera
+                </button>
+            </div>
+
+            <!-- Card number -->
+            <div class="card-number">
+                N° <span id="cardNumber">1234 5678 9012</span>
+            </div>
+        </div>
+
+        <!-- Storico premi -->
+        <div class="rewards-history">
+            <h3>🏆 Premi Riscattati</h3>
+            <ul id="rewardsList">
+                <li class="no-rewards">Nessun premio riscattato ancora</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
